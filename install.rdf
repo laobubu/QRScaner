@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+<Description about="urn:mozilla:install-manifest">
+	<em:id>qrscaner@laobubu.net</em:id>
+	<em:version>1.0</em:version>
+	<em:type>2</em:type>
+	<em:bootstrap>true</em:bootstrap>
+	
+	<em:targetApplication>
+		<Description>
+			<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+			<em:minVersion>3.5</em:minVersion>
+			<em:maxVersion>22.*</em:maxVersion>
+		</Description>
+	</em:targetApplication>
+        
+	<em:iconURL>chrome://qrscaner/skin/icon.png</em:iconURL>
+	<em:name>QRCode Scanner(offline)</em:name>
+	<em:creator>laobubu</em:creator>
+	<em:description>Read the information contained in a QR Code.</em:description>
+	<em:homepageURL>http://lab.laobubu.net/qrscaner</em:homepageURL>
+	
+	<em:localized>
+		<Description>
+			<em:locale>zh-CN</em:locale>
+			<em:name>二维码扫描器(离线版)</em:name>
+			<em:description>读取QR Code（二维码）图片包含的信息。</em:description>
+			<em:creator>laobubu</em:creator>
+			<em:homepageURL>http://lab.laobubu.net/qrscaner</em:homepageURL>
+		</Description>
+	</em:localized>
+	
+	</Description>
+</RDF>
