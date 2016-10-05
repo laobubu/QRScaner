@@ -1,0 +1,6 @@
+{
+  "name": "QRScaner",
+  "tagline": "A QR Code scanner extension for Firefox.",
+  "body": "## Welcome to use QRCode Scanner\r\n\r\n![](https://github.com/laobubu/QRScaner/raw/master/chrome/skin/icon.png)\r\n\r\nA QR Code scanner extension for Firefox.\r\n\r\nRead and decode a QR Code, without Internet.\r\n\r\n### Install\r\n\r\nInstall via Firefox Addons Store\r\n\r\n<https://addons.mozilla.org/firefox/addon/qrcode-scanneroffline/>\r\n\r\n### License and Special Thanks\r\n\r\nThis software is published under Apache-2.0 license.\r\n\r\nUsing [jsQRCode](https://github.com/edi9999/jsqrcode) library to implement offline decoding.\r\n\r\n### Links\r\n\r\n- <http://laobubu.net/QRScaner>\r\n- <https://addons.mozilla.org/firefox/addon/qrcode-scanneroffline/>\r\n- <http://blog.laobubu.net/643>\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
