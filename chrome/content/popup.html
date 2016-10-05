@@ -14,9 +14,12 @@
 		<div><textarea id="result" spellcheck="false"></textarea></div>
 		<div class="failed">
 			<button id="decodeOnline">Decode Online</button>
+			<button onclick="clipImage()">Clip and Retry</button>
 			<button onclick="window.close()">Close</button>
 		</div>
 		<div class="success">
+			<button onclick="clipImage()">Clip</button>
+			<button id="clickToOpen">Open</button>
 			<button onclick="window.close()">Close</button>
 		</div>
 	</div>
@@ -24,10 +27,17 @@
 		QRScaner from &nbsp;
 		<A target="_blank" href="http://laobubu.net/QRScaner">laobubu.net</A>
 		<div class="spacer"></div>
-		<label><input type="checkbox" id="autoClose">Auto Close</label>
+		<label><input type="checkbox" id="autoClose" data-prefs="autoclose">Auto Close</label>
+	</div>
+	<div id="clip" style="display:none">
+		<div><canvas id="clip-canvas"></canvas></div>
+		<div id="clip-tools">
+			<label><input type="checkbox" id="clip-otsu" data-prefs="otsu">Enhance Contrast</label>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="jsqrcode.min.js"></script>
+	<script type="text/javascript" src="imgproc.js"></script>
 	<script type="text/javascript" src="popup.js"></script>
 </body>
 

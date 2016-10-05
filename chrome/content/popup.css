@@ -12,7 +12,7 @@ button {
 	margin: .5em;
 }
 
-#background, #info {
+#background, #info, #clip {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -25,7 +25,17 @@ button {
 	text-align: center;
 }
 
-#info {
+#clip-tools {
+	box-sizing: border-box;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 0;
+	background-color: rgba(0, 0, 0, .7);
+	padding: .5em;
+}
+
+#info, #clip {
 	background-color: rgba(0, 0, 0, .7);
 	overflow: auto;
 }
