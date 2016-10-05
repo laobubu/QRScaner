@@ -1,136 +1,34 @@
 <html>
+
 <head>
-<title>QR Scaner</title>
-<style type="text/css">
-<!--
-.canvas1 {
-	position: fixed;
-	z-index: -100;
-}
-#succeess_out {
-	width: 75%;
-	height: 9em;
-}
-.canvas1, .full {
-	padding: 0px;
-	margin: 0px;
-	left: 0px;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	width:100%;
-	height:100%;
-}
-body {
-	font-family: "Courier New", Courier, monospace;
-	color: #1F262E;
-	margin: 0px;
-}
-#main_data {
-	background: rgba(0,0,0,0.7);
-	color:white;
-	text-shadow: 0 -1px 3px lightgrey;
-}
-textarea {
-	box-shadow: 0 2px 10px black;
-	border-radius: 5px;
-	border: 1px solid black ;
-	padding: 5px;
-	background: #EEE;
-}
-.btn1 {
-	color: #FFF;
-	text-decoration: none;
-	background: #323E49;
-	padding: 15px 20px;
-	margin: 15px;
-	display: inline-block;
-	font-size: x-large;
-	border-radius: 5px;
-	border: 1px solid black ;
-	box-shadow: 0 1px 5px black;
-}
-.btn1:hover {
-	text-shadow: 0 0 5px white;
-}
-a {
-	color: #CAE0EE;
-}
-
--->
-</style>
+	<meta charset="utf-8">
+	<title>QR Scaner</title>
+	<link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
-<script type="text/javascript" src="grid.js"></script>
-<script type="text/javascript" src="version.js"></script>
-<script type="text/javascript" src="detector.js"></script>
-<script type="text/javascript" src="formatinf.js"></script>
-<script type="text/javascript" src="errorlevel.js"></script>
-<script type="text/javascript" src="bitmat.js"></script>
-<script type="text/javascript" src="datablock.js"></script>
-<script type="text/javascript" src="bmparser.js"></script>
-<script type="text/javascript" src="datamask.js"></script>
-<script type="text/javascript" src="rsdecoder.js"></script>
-<script type="text/javascript" src="gf256poly.js"></script>
-<script type="text/javascript" src="gf256.js"></script>
-<script type="text/javascript" src="decoder.js"></script>
-<script type="text/javascript" src="qrcode.js"></script>
-<script type="text/javascript" src="findpat.js"></script>
-<script type="text/javascript" src="alignpat.js"></script>
-<script type="text/javascript" src="databr.js"></script>
+	<div id="background">
+		<div><canvas id="canvas"></canvas></div>
+	</div>
+	<div id="info">
+		<div><textarea id="result" spellcheck="false"></textarea></div>
+		<div class="failed">
+			<button id="decodeOnline">Decode Online</button>
+			<button onclick="window.close()">Close</button>
+		</div>
+		<div class="success">
+			<button onclick="window.close()">Close</button>
+		</div>
+	</div>
+	<div id="bottom">
+		QRScaner from &nbsp;
+		<A target="_blank" href="http://laobubu.net/QRScaner">laobubu.net</A>
+		<div class="spacer"></div>
+		<label><input type="checkbox" id="autoClose">Auto Close</label>
+	</div>
 
-<canvas id="dispalyer"></canvas>
-<table id="main_data" width="100%" border="0" cellpadding="0" cellspacing="0" class="full">
-  <tr>
-    <td align="center">
-    <div id='failed'>
-      <h2>Sorry! </h2>
-      <p>QRScaner cannot read it.</p>
-      <p>Maybe you wanna try: </p>
-      <p><a CLASS="btn1" id="decode_online" target="_blank" onClick="window.close()" href="http://zxing.org/w/decode?u=">Decode online</a></p>
-    </div>
-    <div id='succeess'>
-      <h2>Result </h2>
-      <textarea id="succeess_out"></textarea>
-    </div>
-    <a href="#" onClick="window.close()" class="btn1">Close</a>
-<div style="height:18px"> </div>
-    </td>
-  </tr>
-</table>
-<div align="right" style="padding-right:0.3em;height:18px;line-height:18px;font-size:13px;left:0px;bottom:0px;right:0px;position:fixed;background:black;color:white">
-QRScaner from <A target="_blank" href="http://lab.laobubu.net/qrscaner">laobubu.net</A>  
-</div>
-
-<script>
-if(!window.opener){window.locaion.href="err.html"}
-
-function $(x){return document.getElementById(x)}
-
-function read(a) {
-	if (a=="error decoding QR Code") {
-		$('succeess').style.display='none';
-		$('decode_online').href += encodeURIComponent(imgsrc);
-	} else {
-		$('failed').style.display='none';
-		$('succeess_out').value = a;
-	}
-	canvas.className = 'canvas1';
-}
-
-var img = window.opener.qrscaner_image_queue;
-var imgsrc = img.src;
-var canvas = $("dispalyer");
-canvas.width = img.width;
-canvas.height = img.height;
-
-var ctx = canvas.getContext("2d");
-ctx.drawImage(img, 0, 0);
-
-var dataURL = canvas.toDataURL("image/png");
-
-qrcode.callback = read;
-qrcode.decode(dataURL);
-</script>
+	<script type="text/javascript" src="jsqrcode.min.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
 </body>
+
 </html>
