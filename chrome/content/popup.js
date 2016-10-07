@@ -82,9 +82,17 @@ function decodeOnline() {
                 } else {
                     t = t.substr(t.indexOf('<pre>') + 5);
                     t = t.substr(0, t.indexOf('</pre>'));
-                    var o = document.createElement('textarea');
-                    o.innerHTML = t;
-                    setResult(o.value, true);
+                    t = t.replace(/&(#?\w+);?/g, function(w,k){
+                        k = k.toLowerCase();
+                        if (k == 'nbsp') return ' '
+                        if (k == 'amp') return '&'
+                        if (k == 'lt') return '<'
+                        if (k == 'gt') return '>'
+                        if (k.indexOf('#x') == 0) return String.fromCharCode(parseInt(k.substr(2), 16))
+                        if (k.indexOf('#')  == 0) return String.fromCharCode(parseInt(k.substr(1)))
+                        return w
+                    })
+                    setResult(t, true);
                 }
             }
         }
