@@ -28,11 +28,15 @@ button {
 #clip-tools {
 	box-sizing: border-box;
 	position: fixed;
+	text-align: center;
+	font-size: .8em;
 	left: 50%;
+	white-space: nowrap;
 	transform: translateX(-50%);
 	top: 0;
 	background-color: rgba(0, 0, 0, .7);
-	padding: .5em;
+	padding: .5em 1em;
+	line-height: 1.2em;
 }
 
 #info, #clip {

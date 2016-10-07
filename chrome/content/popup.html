@@ -14,7 +14,7 @@
 		<div><textarea id="result" spellcheck="false"></textarea></div>
 		<div class="failed">
 			<button id="decodeOnline">Decode Online</button>
-			<button onclick="clipImage()">Clip and Retry</button>
+			<button onclick="clipImage()">Adjust and Retry</button>
 			<button onclick="window.close()">Close</button>
 		</div>
 		<div class="success">
@@ -32,7 +32,8 @@
 	<div id="clip" style="display:none">
 		<div><canvas id="clip-canvas"></canvas></div>
 		<div id="clip-tools">
-			<label><input type="checkbox" id="clip-otsu" data-prefs="otsu">Enhance Contrast</label>
+			<div>Use mouse wheel to resize, then draw a rectangle to clip</div>
+			<div><label><input type="checkbox" id="clip-otsu" data-prefs="otsu">Enhance Contrast</label></div>
 		</div>
 	</div>
 
