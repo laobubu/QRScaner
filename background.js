@@ -1,3 +1,5 @@
+if (typeof browser === 'undefined') var browser = chrome
+
 browser.contextMenus.create({
   id: "scan-qr",
   title: browser.i18n.getMessage("cmScanQR"),

@@ -1,3 +1,5 @@
+if (typeof browser === 'undefined') var browser = chrome
+
 browser.storage.local.get("config", function (o) {
   if (o.config && o.config.scrmode) return
 
@@ -22,6 +24,7 @@ browser.storage.local.get("config", function (o) {
 
     try {
       var datauri = canvas.toDataURL('image/png')
+      cr2 = null // successfully gain image. not need to chop screenshot
     } catch (err) {
       // http://stackoverflow.com/questions/2390232/why-does-canvas-todataurl-throw-a-security-exception
       datauri = null
@@ -34,7 +37,7 @@ browser.storage.local.get("config", function (o) {
   doc.addEventListener("contextmenu", function mm(ev) {
     var target = ev.target
 
-    console.log('cm')
+    // console.log('cm')
 
     if (target.nodeName !== 'IMG') return
     last.img = target
@@ -43,5 +46,5 @@ browser.storage.local.get("config", function (o) {
     qrscan_commit('')
   }, true)
 
-  console.log('inject!')
+  // console.log('inject!')
 })

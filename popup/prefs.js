@@ -7,6 +7,8 @@ function $(x) { return document.querySelector(x) }
 function $$(x) { return document.querySelectorAll(x) }
 function $$each(selector, func) { [].forEach.call($$(selector), func) }
 
+if (typeof browser === 'undefined') var browser = chrome
+
 $$each('[i18n]', function (b) {
   var key = b.getAttribute('i18n')
   b.textContent = browser.i18n.getMessage(key)
