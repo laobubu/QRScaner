@@ -1,0 +1,22 @@
+{
+  "extensionName": {
+    "message": "二维码扫描器"
+  },
+  "extensionDescription": {
+    "message": "扫描并解码网页中的二维码。无需互联网。"
+  },
+  "cmScanQR": {
+    "message": "扫描二维码"
+  },
+  "Close": { "message": "关闭" },
+  "adjRetry": { "message": "裁剪并识别" },
+  "Open": { "message": "打开" },
+  "decodeOnline": { "message": "在线解码" },
+  "footer_from": { "message": "QRScaner 来自 :"},
+  "autoClose": { "message": "自动关闭"},
+  "help1": { "message": "使用滚轮缩放图片，然后用鼠标画一个长方形选框"},
+  "otsu1": { "message": "增强对比度（快捷键 C ）"},
+  "inv1": { "message": "反色（快捷键 I ）"},
+  "scrmode": { "message": "利用截图法获取二维码"},
+  "scrmode_d": { "message": "（否则采用页面注入脚本法）"}
+}

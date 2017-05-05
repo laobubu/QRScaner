@@ -1,34 +1,45 @@
-if (!window.opener) { window.locaion.href = "err.html" }
+var defClipRect = null
+browser.runtime.sendMessage('get_last_image', function (ii) {
+    img.src = ii.img
+    defClipRect = ii.rect
+})
 
-function $(x) { return document.querySelector(x) }
-function $$(x) { return document.querySelectorAll(x) }
+var img = new Image()
+var canvas = $("#canvas")
+var ctx = canvas.getContext("2d")
 
-var prefs = Components.classes["@mozilla.org/preferences-service;1"]
-    .getService(Components.interfaces.nsIPrefService)
-    .getBranch("extensions.qrscaner.");
-
-var img = window.opener.qrscaner_image_queue;
-
-var canvas = $("#canvas");
-canvas.width = img.width;
-canvas.height = img.height;
-
-var ctx = canvas.getContext("2d");
-ctx.drawImage(img, 0, 0, img.width, img.height);
-
-var qr = new QrCode();
-qr.callback = function (result, err) {
-    if (result) {
-        setResult(result, true);
+img.onload = function () {
+    if (defClipRect) {
+        canvas.width = defClipRect.w
+        canvas.height = defClipRect.h
+        ctx.drawImage(img, defClipRect.x, defClipRect.y, defClipRect.w, defClipRect.h, 0, 0, defClipRect.w, defClipRect.h)
+        defClipRect = null
     } else {
-        setResult("ERROR! \n" + err, false);
+        canvas.width = img.width
+        canvas.height = img.height
+        ctx.drawImage(img, 0, 0, img.width, img.height)
+    }
+
+    decodeOffline()
+}
+
+var qr = qrcode//new QrCode();
+qr.callback = function (/*err,*/ result) {
+    // debugger
+    if (result === 'error decoding QR Code') {
+        setResult("ERROR! \n"/* + err*/, false);
+        // throw result
+    } else {
+        // result.points
+        // setResult(result.result, true);
+        setResult(result, true);
     }
 }
 
 var clickToOpen = $('#clickToOpen');
 clickToOpen.addEventListener('click', function () {
     var url = $('#result').value;
-    if (!/^[a-z]+:/.test(url)) url = 'http://' + url;
+    if (!/^[a-z]+:/i.test(url)) url = 'http://' + url;
     window.open(url, '_blank');
 }, false);
 
@@ -42,7 +53,7 @@ function setResult(result, success) {
 
     if (success) {
         $('#clip').style.display = 'none';
-        if (/^([a-z-]+:.+|\w[\.\w]+\/.+)$/im.test(result)) {
+        if (/^([a-z-]+:.+|\w+\.\w+)$/im.test(result)) {
             clickToOpen.style.display = '';
         } else {
             clickToOpen.style.display = 'none';
@@ -82,14 +93,14 @@ function decodeOnline() {
                 } else {
                     t = t.substr(t.indexOf('<pre>') + 5);
                     t = t.substr(0, t.indexOf('</pre>'));
-                    t = t.replace(/&(#?\w+);?/g, function(w,k){
+                    t = t.replace(/&(#?\w+);?/g, function (w, k) {
                         k = k.toLowerCase();
                         if (k == 'nbsp') return ' '
                         if (k == 'amp') return '&'
                         if (k == 'lt') return '<'
                         if (k == 'gt') return '>'
                         if (k.indexOf('#x') == 0) return String.fromCharCode(parseInt(k.substr(2), 16))
-                        if (k.indexOf('#')  == 0) return String.fromCharCode(parseInt(k.substr(1)))
+                        if (k.indexOf('#') == 0) return String.fromCharCode(parseInt(k.substr(1)))
                         return w
                     })
                     setResult(t, true);
@@ -101,11 +112,9 @@ function decodeOnline() {
     }, "image/png")
 }
 
-decodeOffline();
 $('#decodeOnline').addEventListener('click', decodeOnline, false);
 
-// clip
-
+// function to open clip-n-chop window
 var clipImage = (function () {
 
     var clip = $('#clip');
@@ -138,6 +147,7 @@ var clipImage = (function () {
 
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         if (prefs.getBoolPref('otsu')) imgproc.otsu(ctx, x, y, w, h);
+        if (prefs.getBoolPref('inv')) imgproc.invert(ctx, x, y, w, h);
 
         ctx.beginPath();
         ctx.lineWidth = "2";
@@ -158,9 +168,10 @@ var clipImage = (function () {
         window.ctx.drawImage(canvas, -x, -y);
 
         decodeOffline();
-        ctx.font = "12pt";
-        ctx.fillStyle = "#0F0";
-        ctx.fillText("Please retry", x, y);
+        clip.style.display = 'none';
+        // ctx.font = "12pt";
+        // ctx.fillStyle = "#0F0";
+        // ctx.fillText("Please retry", x, y);
     }, false)
 
     clip.addEventListener('wheel', function (ev) {
@@ -201,18 +212,11 @@ setTimeout(function () {
     window.onblur = function () { prefs.getBoolPref('autoclose') && window.close() };
 }, 50);
 
-// prefs checkboxs
 
-function prefsUpdate(ev) {
-    prefs.setBoolPref(ev.target.getAttribute('data-prefs'), ev.target.checked)
-}
+$$each('[ev-close]', function (b) {
+    b.addEventListener('click', function () { window.close() }, false);
+})
 
-[].forEach.call($$('[data-prefs]'), function (cbox) {
-    var name = cbox.getAttribute('data-prefs');
-    try {
-        cbox.checked = prefs.getBoolPref(name);
-    } catch (e) {
-        prefs.setBoolPref(name, cbox.checked);
-    }
-    cbox.addEventListener('change', prefsUpdate, false);
+$$each('[ev-clip]', function (b) {
+    b.addEventListener('click', function () { clipImage() }, false);
 })

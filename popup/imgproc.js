@@ -52,5 +52,18 @@ var imgproc = {
 
 
         ctx.putImageData(imageData, x, y);
+    },
+    invert: function (ctx, x, y, w, h) {
+
+        var imageData = ctx.getImageData(x, y, w, h);
+        var data = imageData.data;
+
+        for (var i = 0; i < data.length; i += 4) {
+            data[i] = 255 - data[i];
+            data[i + 1] = 255 - data[i + 1];
+            data[i + 2] = 255 - data[i + 2];
+        }
+
+        ctx.putImageData(imageData, x, y);
     }
 }

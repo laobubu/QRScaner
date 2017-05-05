@@ -1,0 +1,51 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>QR Scaner</title>
+	<link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+	<div id="background">
+		<div><canvas id="canvas"></canvas></div>
+	</div>
+	<div id="info">
+		<div><textarea id="result" spellcheck="false"></textarea></div>
+		<div class="failed">
+			<button i18n="decodeOnline" id="decodeOnline">Decode Online</button>
+			<button i18n="adjRetry" ev-clip>Adjust and Retry</button>
+			<button i18n="Close" ev-close>Close</button>
+		</div>
+		<div class="success">
+			<button i18n="adjRetry" ev-clip>Clip</button>
+			<button i18n="Open" id="clickToOpen">Open</button>
+			<button i18n="Close" ev-close>Close</button>
+		</div>
+	</div>
+	<div id="bottom">
+		<div i18n="footer_from">QRScaner from &nbsp;</div>
+		<A target="_blank" href="http://laobubu.net/QRScaner">laobubu.net</A>
+		<div class="spacer"></div>
+		<label><input type="checkbox" id="autoClose" data-prefs="autoclose"><span i18n="autoClose">Auto Close</span></label>
+	</div>
+	<div id="clip" style="display:none">
+		<div><canvas id="clip-canvas"></canvas></div>
+		<div id="clip-tools-out">
+			<div id="clip-tools">
+				<div i18n="help1">Use mouse wheel to resize, then draw a rectangle to clip</div>
+				<div id="clip-tools-cks">
+					<label data-shortcut="c"><input type="checkbox" id="clip-otsu" data-prefs="otsu"><span i18n="otsu1">Enhance Contrast</span></label>
+					<label data-shortcut="i"><input type="checkbox" id="clip-inv" data-prefs="inv"><span i18n="inv1">invert color</span></label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="llqrcode.js"></script>
+	<script type="text/javascript" src="prefs.js"></script>
+	<script type="text/javascript" src="imgproc.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
+</body>
+
+</html>

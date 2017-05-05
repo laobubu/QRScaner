@@ -25,18 +25,31 @@ button {
 	text-align: center;
 }
 
-#clip-tools {
-	box-sizing: border-box;
+#clip-tools-out {
 	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 1px;
+}
+
+#clip-tools {
+	display: inline-block;
+	box-sizing: border-box;
 	text-align: center;
 	font-size: .8em;
-	left: 50%;
-	white-space: nowrap;
-	transform: translateX(-50%);
-	top: 0;
+	/*white-space: nowrap;*/
 	background-color: rgba(0, 0, 0, .7);
 	padding: .5em 1em;
 	line-height: 1.2em;
+}
+
+#clip-tools-cks label {
+	display: inline-block;
+	padding: 3px;
+	cursor: pointer;
+	border: 1px solid #999;
+	margin: 3px;
 }
 
 #info, #clip {

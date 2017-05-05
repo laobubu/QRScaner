@@ -3,7 +3,7 @@ QRScaner
 
 A QR Code scaner extension for Firefox.
 
-Using [jsQRCode](https://github.com/edi9999/jsqrcode) library to implement offline decoding.
+Using [LazarSoft/jsqrcode](https://github.com/LazarSoft/jsqrcode) as backend to implement offline decoding.
 
 See
 
