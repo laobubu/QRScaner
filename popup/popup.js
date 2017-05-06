@@ -146,6 +146,8 @@ var clipImage = (function () {
         y2 = ev.offsetY;
         calcXYWH();
 
+        ctx.fillStyle = "#FFF"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         if (prefs.getBoolPref('otsu')) imgproc.otsu(ctx, x, y, w, h);
         if (prefs.getBoolPref('inv')) imgproc.invert(ctx, x, y, w, h);
@@ -195,6 +197,8 @@ var clipImage = (function () {
     function afterZoomUpdated() {
         canvas.width = zoom * img.width;
         canvas.height = zoom * img.height;
+        ctx.fillStyle = "#FFF"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     }
 
@@ -212,6 +216,10 @@ var clipImage = (function () {
 setTimeout(function () {
     window.onblur = function () { prefs.getBoolPref('autoclose') && window.close() };
 }, 50);
+
+document.addEventListener('keyup', function (ev) {
+    if ((ev.keyCode || ev.which) == 27) window.close()
+}, false)
 
 
 $$each('[ev-close]', function (b) {
