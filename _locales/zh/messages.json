@@ -6,6 +6,9 @@
     "message": "扫描并解码网页中的二维码。无需互联网。"
   },
   "cmScanQR": {
+    "message": "识别图片二维码"
+  },
+  "cmScanQRscr": {
     "message": "扫描二维码"
   },
   "Close": { "message": "关闭" },

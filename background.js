@@ -14,7 +14,7 @@ function reloadCfg() {
     if (cfgCache.scrmode) {
       browser.contextMenus.create({
         id: "scan-qr-screen",
-        title: browser.i18n.getMessage("cmScanQR"),
+        title: browser.i18n.getMessage("cmScanQRscr"),
         contexts: ["frame", "page", "selection", "video"],
         checked: false
       })
