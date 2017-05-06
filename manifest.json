@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "default_locale": "en",
   "background": {
     "scripts": [
@@ -12,18 +12,6 @@
   "options_ui": {
     "page": "options.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "/content-script.js"
-      ],
-      "run_at": "document_start",
-      "all_frames": true
-    }
-  ],
   "permissions": [
     "contextMenus",
     "storage",

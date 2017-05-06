@@ -8,6 +8,7 @@ var img = new Image()
 var canvas = $("#canvas")
 var ctx = canvas.getContext("2d")
 
+img.crossOrigin = ''
 img.onload = function () {
     if (defClipRect) {
         canvas.width = defClipRect.w

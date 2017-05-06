@@ -17,6 +17,6 @@
   "help1": { "message": "Use mouse wheel to resize, then draw a marquee to chop."},
   "otsu1": { "message": "Enhance Contrast (Shortcut: C)"},
   "inv1": { "message": "Invert Color (Shortcut: I)"},
-  "scrmode": { "message": "Fetch image via Screenshot"},
-  "scrmode_d": { "message": "(or via injected content-script)"}
+  "scrmode": { "message": "Fetch QR Code via Screenshot"},
+  "scrmode_d": { "message": "('Scan QR' will always presents in context menu)"}
 }

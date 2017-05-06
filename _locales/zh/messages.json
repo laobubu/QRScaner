@@ -17,6 +17,6 @@
   "help1": { "message": "使用滚轮缩放图片，然后用鼠标画一个长方形选框"},
   "otsu1": { "message": "增强对比度（快捷键 C ）"},
   "inv1": { "message": "反色（快捷键 I ）"},
-  "scrmode": { "message": "利用截图法获取二维码"},
-  "scrmode_d": { "message": "（否则采用页面注入脚本法）"}
+  "scrmode": { "message": "通过页面截图获取二维码"},
+  "scrmode_d": { "message": "(这将在右键菜单里始终显示“扫描二维码”选项)" }
 }
