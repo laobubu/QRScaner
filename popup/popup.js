@@ -54,7 +54,7 @@ function setResult(result, success) {
 
     if (success) {
         $('#clip').style.display = 'none';
-        if (/^([a-z-]+:.+|\w+\.\w+)$/im.test(result)) {
+        if (/^(?:[a-z-]+\:.+|\w+\.\w+)/i.test(result)) {
             clickToOpen.style.display = '';
         } else {
             clickToOpen.style.display = 'none';
